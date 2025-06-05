@@ -4,12 +4,20 @@ import './Landing.css';
 function Landing() {
   const navigate = useNavigate();
 
+  const handleSignUp = () => {
+    navigate('/register');
+  };
+
+  const handleSignIn = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="landing-container">
       <h1>Apatheia</h1>
       <div className="button-group">
-        <button onClick={() => navigate("/quote")}>Sign In</button>
-        <button onClick={() => navigate("/quote")}>Sign Up</button>
+        <button onClick={handleSignIn}>Sign In</button>
+        <button onClick={handleSignUp}>Sign Up</button>
       </div>
     </div>
   );
