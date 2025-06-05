@@ -2,12 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./models/db');
 const { User, Quote, JournalEntry } = require('./models/associateModels');
+const authRoutes = require('./routes/authRoutes');
+const quoteRoutes = require('./routes/quotesRoute');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/quote', require('./routes/quotesRoute'));
+app.use('/api', authRoutes);
+app.use('/api/quote', quoteRoutes);
 
 
 app.listen(3000, async () => {
