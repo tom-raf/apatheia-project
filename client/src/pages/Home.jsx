@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import './Quote.css'
+import './Home.css'
+import Navbar from '../components/Navbar';
 
 function Quote() {
   const [quote, setQuote] = useState(null);
@@ -17,17 +18,21 @@ function Quote() {
     return <p>Loading...</p>; //Quote not always ready causing app to not load anything. Will look to handle better in a refactor.
   }
 
+  const userName = 'Alastair';
+  
   return (
-    <div className="quote-container">
-      <blockquote className="quote-text">"{quote.quote_text}"</blockquote>
-      <p className="quote-author">— {quote.author}</p>
-
-      <textarea
-        className="quote-input"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Write your thoughts..."
-      />
+    <div>
+      <Navbar name={userName} />
+      <div className="quote-container">
+        <blockquote className="quote-text">"{quote.quote_text}"</blockquote>
+        <p className="quote-author">— {quote.author}</p>
+        <textarea
+          className="quote-input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Write your thoughts..."
+          />
+      </div>
     </div>
   );
 }

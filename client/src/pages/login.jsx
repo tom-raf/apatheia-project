@@ -24,7 +24,7 @@ function Login() {
       if (!response.ok) throw new Error(result.message || 'Login failed.');
 
       localStorage.setItem('token', result.token);
-      navigate('/quote');
+      navigate('/home');
     } catch (error) {
       alert(error.message);
     }

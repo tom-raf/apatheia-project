@@ -3,7 +3,7 @@ import './App.css';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Quote from './pages/Quote';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path='/quote' element={<Quote />} /> 
+        <Route path='/home' element={<Home />} /> 
       </Routes>
     </Router>
   )

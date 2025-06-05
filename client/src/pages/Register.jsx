@@ -29,7 +29,7 @@ function Register() {
       if (!response.ok) throw new Error(result.message || 'Registration failed.');
 
       alert(result.message);
-      navigate('/quote');
+      navigate('/home');
     } catch (error) {
       alert(error.message);
     }
