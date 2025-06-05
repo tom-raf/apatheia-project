@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import './Quote.css'
 
 function Quote() {
   const [quote, setQuote] = useState(null);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/api/quote")
@@ -16,10 +18,16 @@ function Quote() {
   }
 
   return (
-    <div>
-      <h1>Today's Stoic Quote</h1>
-      <p>{quote.quote_text}</p>
-      <p>— {quote.author}</p>
+    <div className="quote-container">
+      <blockquote className="quote-text">"{quote.quote_text}"</blockquote>
+      <p className="quote-author">— {quote.author}</p>
+
+      <textarea
+        className="quote-input"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Write your thoughts..."
+      />
     </div>
   );
 }
