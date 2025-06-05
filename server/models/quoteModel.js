@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./db').sequelize;
+const sequelize = require('./dbInstance');
 
 const Quote = sequelize.define('Quote', {
   quote_text: {
