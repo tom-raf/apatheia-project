@@ -13,13 +13,16 @@ function Landing() {
   };
 
   return (
-    <div className="landing-container">
-      <h1>Apatheia</h1>
-      <div className="button-group">
-        <button onClick={handleSignIn}>Sign In</button>
-        <button onClick={handleSignUp}>Sign Up</button>
+    <>
+      <img src="/logo.png" alt="Logo" className="logo" />
+      <div className="landing-container">
+        <h1>Apatheia</h1>
+        <div className="button-group">
+          <button onClick={handleSignIn}>Sign In</button>
+          <button onClick={handleSignUp}>Sign Up</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
