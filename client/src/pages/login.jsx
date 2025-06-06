@@ -24,6 +24,9 @@ function Login() {
       if (!response.ok) throw new Error(result.message || 'Login failed.');
 
       localStorage.setItem('token', result.token);
+      localStorage.setItem('name', result.name); // Set the name
+      localStorage.removeItem('firstVisit', 'false'); // Clear first-visit flag
+
       navigate('/home');
     } catch (error) {
       alert(error.message);

@@ -29,6 +29,10 @@ function Register() {
       if (!response.ok) throw new Error(result.message || 'Registration failed.');
 
       alert(result.message);
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('name', result.name); // Set the name
+      localStorage.setItem('firstVisit', 'true'); // Mark it as first-time login
+      
       navigate('/home');
     } catch (error) {
       alert(error.message);
