@@ -25,9 +25,16 @@ exports.registerUser = async (req, res) => {
       password_hash
     });
 
+    const token = jwt.sign(
+      { userId: newUser.id, name: newUser.name },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
+
     res.status(201).json({
-      message: 'User registered successfully.',
-      userId: newUser.id
+      message: 'Registration successful.',
+      token,
+      name: newUser.name
     });
 
   } catch (error) {
@@ -63,7 +70,7 @@ exports.loginUser = async (req, res) => {
       { expiresIn: '1d' }
     );
 
-    res.json({
+    res.status(200).json({
       message: 'Login successful.',
       token,
       name: user.name
