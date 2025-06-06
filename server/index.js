@@ -4,6 +4,7 @@ const connectDB = require('./models/db');
 const { User, Quote, JournalEntry } = require('./models/associateModels');
 const authRoutes = require('./routes/authRoutes');
 const quoteRoutes = require('./routes/quotesRoute');
+const journalRoutes = require('./routes/journalRoutes');
 
 const app = express();
 app.use(cors());
@@ -11,7 +12,7 @@ app.use(express.json());
 
 app.use('/api', authRoutes);
 app.use('/api/quote', quoteRoutes);
-
+app.use('/api/journal', journalRoutes);
 
 app.listen(3000, async () => {
   try {
