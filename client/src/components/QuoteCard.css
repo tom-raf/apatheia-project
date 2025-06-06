@@ -1,0 +1,14 @@
+.quote-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.quote-author {
+  font-weight: bold;
+}
