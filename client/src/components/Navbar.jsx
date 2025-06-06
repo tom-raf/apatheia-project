@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './Navbar.css';
 
 function Navbar() {
@@ -6,6 +7,16 @@ function Navbar() {
   const isFirstVisit = localStorage.getItem('firstVisit') === 'true';
 
   const greeting = isFirstVisit ? 'Chaire' : 'Welcome back';
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('firstVisit');
+    navigate('/');
+  };
 
   return (
     <nav className="navbar">
@@ -16,7 +27,19 @@ function Navbar() {
       <div className="navbar-right">
         <Link to="/home" className="nav-link">Home</Link>
         <Link to="/archive" className="nav-link">Archive</Link>
-        <span className="nav-link">Profile</span>
+         <div
+          className="profile-menu"
+          onMouseEnter={() => setShowDropdown(true)}
+          onMouseLeave={() => setShowDropdown(false)}
+        >
+          <span className="nav-link">Profile</span>
+          {showDropdown && (
+            <div className="dropdown">
+              <button onClick={handleLogout}>Log Out</button>
+              <button>Edit</button>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

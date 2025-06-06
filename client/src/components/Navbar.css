@@ -29,3 +29,36 @@
 .nav-link {
   cursor: pointer;
 }
+
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-58%);
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.dropdown button:hover {
+  background-color: #f0f0f0;
+}
+
