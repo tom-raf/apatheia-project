@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Archive from './pages/Archive';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path='/home' element={<Home />} /> 
-        <Route path="/archive" element={<Archive />} />
+        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} /> 
+        <Route path="/archive" element={<ProtectedRoute><Archive /></ProtectedRoute>} />
       </Routes>
     </Router>
   )
