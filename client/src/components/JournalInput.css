@@ -6,13 +6,21 @@
 
 .journal-input {
   width: 100%;
-  height: 150px;
+  height: auto;
+  min-height: calc(1.5em * 13);
   padding: 1rem;
   font-size: 1rem;
+  line-height: 1.5em;
   border: 1px solid #ccc;
   border-radius: 8px;
-  resize: vertical;
-  margin-bottom: 1rem;
+  background-color: #f8f5f0;
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.journal-input::-webkit-scrollbar {
+  display: none;
 }
 
 .submit-button {

@@ -53,7 +53,7 @@ function JournalInput({ quoteId }) {
 
       const result = await response.json();
       console.log(result.message);
-      setExistingEntry(true); // in case it just switched from new to saved
+      setExistingEntry(true);
     } catch (error) {
       console.error('Failed to save journal:', error);
     }
@@ -62,10 +62,10 @@ function JournalInput({ quoteId }) {
   return (
     <form onSubmit={handleSubmit} className="journal-form">
       <textarea
+        className="journal-input"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Write your thoughts here..."
-        className="journal-input"
         rows={13}
       />
       <button type="submit" className="submit-button">
