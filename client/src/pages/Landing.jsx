@@ -14,10 +14,9 @@ function Landing() {
 
   return (
     <>
-      <img src="/logo.png" alt="Logo" className="logo" />
       <div className="landing-container">
         <h1>Apatheia</h1>
-        <div className="button-group">
+        <div className="landing-button-group">
           <button onClick={handleSignIn}>Sign In</button>
           <button onClick={handleSignUp}>Sign Up</button>
         </div>

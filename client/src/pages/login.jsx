@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../pages/Login-Register.css'
 
 function Login() {
   const [formData, setFormData] = useState({ username: '', password: '' });

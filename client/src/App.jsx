@@ -9,15 +9,20 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} /> 
-        <Route path="/archive" element={<ProtectedRoute><Archive /></ProtectedRoute>} />
-      </Routes>
-    </Router>
+    <div className="app-overlay-wrapper">
+      <div className="global-overlay"></div>
+        <div className="app-content">
+          <Router>
+            <Routes>
+              <Route path='/' element={<Landing />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} /> 
+              <Route path="/archive" element={<ProtectedRoute><Archive /></ProtectedRoute>} />
+            </Routes>
+          </Router>
+        </div>
+    </div>
   )
 }
 
