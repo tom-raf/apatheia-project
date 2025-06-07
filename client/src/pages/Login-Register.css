@@ -5,12 +5,12 @@
   height: 100vh;
   margin: 0;
   font-family: sans-serif;
-  background-image: url('/landing-background.png');
+  background-image: url("/landing-background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 
 .page-wrapper form {
@@ -30,7 +30,7 @@
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 
 .page-wrapper button {
@@ -42,7 +42,7 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 
 .page-wrapper button:hover {

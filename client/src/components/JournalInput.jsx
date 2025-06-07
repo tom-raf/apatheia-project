@@ -9,11 +9,14 @@ function JournalInput({ quoteId }) {
   useEffect(() => {
     const fetchTodayEntry = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/journal/today', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await fetch(
+          'http://localhost:3000/api/journal/today',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -41,14 +44,14 @@ function JournalInput({ quoteId }) {
         method,
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           journal_text: input,
           ...(existingEntry
             ? { date: new Date().toISOString().split('T')[0] }
-            : { quote_id: quoteId })
-        })
+            : { quote_id: quoteId }),
+        }),
       });
 
       const result = await response.json();

@@ -7,13 +7,15 @@ exports.registerUser = async (req, res) => {
     const { name, username, password } = req.body;
 
     if (!name || !password) {
-      return res.status(400).json({ message: 'Name and password are required.' })
+      return res
+        .status(400)
+        .json({ message: 'Name and password are required.' });
     }
 
     const existingUser = await User.findOne({ where: { username } });
 
     if (existingUser) {
-      return res.status(409).json({ message: 'User already exists.' })
+      return res.status(409).json({ message: 'User already exists.' });
     }
 
     // Hash password
@@ -22,21 +24,20 @@ exports.registerUser = async (req, res) => {
     const newUser = await User.create({
       name,
       username,
-      password_hash
+      password_hash,
     });
 
     const token = jwt.sign(
       { userId: newUser.id, name: newUser.name },
       process.env.JWT_SECRET,
-      { expiresIn: '30m' }
+      { expiresIn: '30m' },
     );
 
     res.status(201).json({
       message: 'Registration successful.',
       token,
-      name: newUser.name
+      name: newUser.name,
     });
-
   } catch (error) {
     console.error('Error in registerUser:', error);
     res.status(500).json({ message: 'Internal server error.' });
@@ -48,7 +49,9 @@ exports.loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res.status(400).json({ message: 'Username and password required.' });
+      return res
+        .status(400)
+        .json({ message: 'Username and password required.' });
     }
 
     // Check if user exists
@@ -67,15 +70,14 @@ exports.loginUser = async (req, res) => {
     const token = jwt.sign(
       { userId: user.id, name: user.name },
       process.env.JWT_SECRET,
-      { expiresIn: '30m' }
+      { expiresIn: '30m' },
     );
 
     res.status(200).json({
       message: 'Login successful.',
       token,
-      name: user.name
+      name: user.name,
     });
-
   } catch (error) {
     console.error('Error in loginUser:', error);
     res.status(500).json({ message: 'Internal server error.' });

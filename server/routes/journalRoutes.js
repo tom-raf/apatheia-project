@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { createJournalEntry, getUserJournalHistory, updateJournalEntry, getTodaysEntry } = require('../controllers/journalController');
+const {
+  createJournalEntry,
+  getUserJournalHistory,
+  updateJournalEntry,
+  getTodaysEntry,
+} = require('../controllers/journalController');
 const verifyToken = require('../middleware/verifyToken');
 
 router.post('/', verifyToken, createJournalEntry);

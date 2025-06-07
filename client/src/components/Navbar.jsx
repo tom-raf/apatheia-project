@@ -22,12 +22,18 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img src="/logo.png" alt="Logo" className="logo" />
-        <span className="welcome">{greeting}, {name}</span>
+        <span className="welcome">
+          {greeting}, {name}
+        </span>
       </div>
       <div className="navbar-right">
-        <Link to="/home" className="nav-link">Home</Link>
-        <Link to="/archive" className="nav-link">Archive</Link>
-         <div
+        <Link to="/home" className="nav-link">
+          Home
+        </Link>
+        <Link to="/archive" className="nav-link">
+          Archive
+        </Link>
+        <div
           className="profile-menu"
           onMouseEnter={() => setShowDropdown(true)}
           onMouseLeave={() => setShowDropdown(false)}
@@ -36,7 +42,9 @@ function Navbar() {
           {showDropdown && (
             <div className="dropdown">
               <button onClick={handleLogout}>Log Out</button>
-              <button>Edit</button>
+              <Link to="/edit">
+                <button>Edit</button>
+              </Link>
             </div>
           )}
         </div>

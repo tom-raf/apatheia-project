@@ -7,16 +7,18 @@ exports.createJournalEntry = async (req, res) => {
     const userId = req.userId;
 
     if (!journal_text || !quote_id) {
-      return res.status(400).json({ message: 'Missing journal text or quote.' });
+      return res
+        .status(400)
+        .json({ message: 'Missing journal text or quote.' });
     }
 
     const today = new Date().toISOString().split('T')[0];
-    
+
     const entry = await JournalEntry.create({
       journal_text,
       quote_id,
       user_id: userId,
-      date: today
+      date: today,
     });
 
     res.status(201).json({ message: 'Journal entry saved.', entry });
@@ -34,10 +36,10 @@ exports.getUserJournalHistory = async (req, res) => {
       where: { user_id: userId },
       include: {
         model: Quote,
-        attributes: ['quote_text', 'author']
+        attributes: ['quote_text', 'author'],
       },
       order: [['createdAt', 'DESC']],
-      limit: 10
+      limit: 10,
     });
 
     res.status(200).json(entries);
@@ -53,18 +55,22 @@ exports.updateJournalEntry = async (req, res) => {
     const userId = req.userId;
 
     if (!journal_text || !date) {
-      return res.status(400).json({ message: 'Missing updated journal text or date.' });
+      return res
+        .status(400)
+        .json({ message: 'Missing updated journal text or date.' });
     }
 
     const entry = await JournalEntry.findOne({
       where: {
         user_id: userId,
-        date
-      }
+        date,
+      },
     });
 
     if (!entry) {
-      return res.status(404).json({ message: 'Entry not found for this date.' });
+      return res
+        .status(404)
+        .json({ message: 'Entry not found for this date.' });
     }
 
     entry.journal_text = journal_text;
@@ -85,12 +91,12 @@ exports.getTodaysEntry = async (req, res) => {
     const entry = await JournalEntry.findOne({
       where: {
         user_id: userId,
-        date: today
+        date: today,
       },
       include: {
         model: Quote,
-        attributes: ['quote_text', 'author']
-      }
+        attributes: ['quote_text', 'author'],
+      },
     });
 
     if (!entry) {
@@ -99,7 +105,7 @@ exports.getTodaysEntry = async (req, res) => {
 
     res.status(200).json(entry);
   } catch (error) {
-    console.error('Error fetching today\'s entry:', error);
+    console.error("Error fetching today's entry:", error);
     res.status(500).json({ message: 'Server error.' });
   }
 };

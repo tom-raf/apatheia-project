@@ -45,7 +45,7 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  min-width: 100px;
+  min-width: 105px;
 }
 
 .dropdown button {
@@ -61,4 +61,3 @@
 .dropdown button:hover {
   background-color: #f0f0f0;
 }
-
