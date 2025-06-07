@@ -3,10 +3,6 @@ html, body, #root {
   margin: 0;
 }
 
-body {
-  font-family: sans-serif;
-}
-
 .page-wrapper {
   display: flex;
   flex-direction: column;

@@ -15,7 +15,7 @@ function Landing() {
   return (
     <>
       <div className="landing-container">
-        <h1>Apatheia</h1>
+        <h1 className="main-title">Apatheia</h1>
         <div className="landing-button-group">
           <button onClick={handleSignIn}>Sign In</button>
           <button onClick={handleSignUp}>Sign Up</button>

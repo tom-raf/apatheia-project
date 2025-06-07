@@ -1,6 +1,6 @@
 .landing-container {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Cinzel', serif;
   background-image: url('/landing-background.png');
   background-size: cover;
   background-position: center;
@@ -13,6 +13,10 @@
   height: 100vh;
   text-align: center;
   color: #fff;
+}
+
+.main-title {
+  font-size: 90px;
 }
 
 .landing-button-group {
