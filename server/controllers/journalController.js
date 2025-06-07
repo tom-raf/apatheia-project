@@ -25,7 +25,7 @@ exports.createJournalEntry = async (req, res) => {
 
 exports.getUserJournalHistory = async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.userId;
 
     const entries = await JournalEntry.findAll({
       where: { user_id: userId },
