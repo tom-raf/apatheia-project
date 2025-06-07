@@ -18,10 +18,20 @@ const JournalEntry = sequelize.define('JournalEntry', {
   quote_id: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  date: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
   }
 }, {
   tableName: 'journal_entries',
-  timestamps: true
+  timestamps: true,
+  indexes: [
+    {
+      unique: true,
+      fields: ['user_id', 'date']
+    }
+  ]
 });
 
 module.exports = JournalEntry;

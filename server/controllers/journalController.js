@@ -4,16 +4,19 @@ const Quote = require('../models/quoteModel');
 exports.createJournalEntry = async (req, res) => {
   try {
     const { journal_text, quote_id } = req.body;
-    const user_id = req.userId; // set by verifyToken middleware
+    const userId = req.userId;
 
     if (!journal_text || !quote_id) {
       return res.status(400).json({ message: 'Missing journal text or quote.' });
     }
 
+    const today = new Date().toISOString().split('T')[0];
+    
     const entry = await JournalEntry.create({
       journal_text,
       quote_id,
-      user_id
+      user_id: userId,
+      date: today
     });
 
     res.status(201).json({ message: 'Journal entry saved.', entry });
@@ -41,5 +44,62 @@ exports.getUserJournalHistory = async (req, res) => {
   } catch (error) {
     console.error('Error fetching journal history:', error);
     res.status(500).json({ message: 'Could not retrieve journal entries.' });
+  }
+};
+
+exports.updateJournalEntry = async (req, res) => {
+  try {
+    const { journal_text, date } = req.body;
+    const userId = req.userId;
+
+    if (!journal_text || !date) {
+      return res.status(400).json({ message: 'Missing updated journal text or date.' });
+    }
+
+    const entry = await JournalEntry.findOne({
+      where: {
+        user_id: userId,
+        date
+      }
+    });
+
+    if (!entry) {
+      return res.status(404).json({ message: 'Entry not found for this date.' });
+    }
+
+    entry.journal_text = journal_text;
+    await entry.save();
+
+    res.status(200).json({ message: 'Journal entry updated.', entry });
+  } catch (error) {
+    console.error('Error updating journal entry:', error);
+    res.status(500).json({ message: 'Server error.' });
+  }
+};
+
+exports.getTodaysEntry = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const today = new Date().toISOString().split('T')[0];
+
+    const entry = await JournalEntry.findOne({
+      where: {
+        user_id: userId,
+        date: today
+      },
+      include: {
+        model: Quote,
+        attributes: ['quote_text', 'author']
+      }
+    });
+
+    if (!entry) {
+      return res.status(404).json({ message: 'No entry found for today.' });
+    }
+
+    res.status(200).json(entry);
+  } catch (error) {
+    console.error('Error fetching today\'s entry:', error);
+    res.status(500).json({ message: 'Server error.' });
   }
 };
