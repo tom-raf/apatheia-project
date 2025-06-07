@@ -36,6 +36,7 @@
   border-radius: 8px;
   resize: vertical;
   margin-bottom: 1rem;
+  font-family: 'Cinzel', serif;
 }
 
 .submit-button {
@@ -46,4 +47,5 @@
   cursor: pointer;
   background-color: #333;
   color: #fff;
+  font-family: 'Cinzel', serif;
 }
