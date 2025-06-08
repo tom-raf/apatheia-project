@@ -26,6 +26,7 @@ function Login() {
 
       localStorage.setItem('token', result.token);
       localStorage.setItem('name', result.name); // Set the name
+      localStorage.setItem('id', result.id);
       localStorage.removeItem('firstVisit', 'false'); // Clear first-visit flag
 
       navigate('/home');
@@ -41,6 +42,7 @@ function Login() {
         <input
           type="text"
           name="username"
+          value={formData.username}
           onChange={handleChange}
           placeholder="Username"
           required
@@ -48,6 +50,7 @@ function Login() {
         <input
           type="password"
           name="password"
+          value={formData.password}
           onChange={handleChange}
           placeholder="Password"
           required

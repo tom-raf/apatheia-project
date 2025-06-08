@@ -33,6 +33,7 @@ function Register() {
       alert(result.message);
       localStorage.setItem('token', result.token);
       localStorage.setItem('name', result.name); // Set the name
+      localStorage.setItem('id', result.id);
       localStorage.setItem('firstVisit', 'true'); // Mark it as first-time login
 
       navigate('/home');
@@ -48,6 +49,7 @@ function Register() {
         <input
           type="text"
           name="name"
+          value={formData.name}
           onChange={handleChange}
           placeholder="Your Name"
           required
@@ -55,6 +57,7 @@ function Register() {
         <input
           type="text"
           name="username"
+          value={formData.username}
           onChange={handleChange}
           placeholder="Username"
           required
@@ -62,6 +65,7 @@ function Register() {
         <input
           type="password"
           name="password"
+          value={formData.password}
           onChange={handleChange}
           placeholder="Password"
           required

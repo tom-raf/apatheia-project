@@ -2,12 +2,71 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 2rem;
   text-align: center;
+  font-family: 'Cinzel', serif;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.edit-user-container h1 {
+.edit-user-container h2 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.edit-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Cinzel', serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.save-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-account-button {
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-account-button:hover {
+  background-color: #a00000;
+}
+
+.status-message {
+  margin-top: 1rem;
+  color: #444;
+  font-style: italic;
 }

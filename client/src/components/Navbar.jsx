@@ -15,6 +15,7 @@ function Navbar() {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('firstVisit');
+    localStorage.removeItem('id');
     navigate('/');
   };
 
