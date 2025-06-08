@@ -75,6 +75,10 @@ function EditUser() {
         }
       }
 
+      setName('');
+      setUsername('');
+      setCurrentPassword('');
+      setNewPassword('');
       setStatus('Changes saved successfully.');
     } catch (error) {
       console.error('Error saving changes:', error);
