@@ -3,8 +3,8 @@ const Quote = require('./quoteModel');
 const JournalEntry = require('./journalEntryModel');
 
 // User <-> JournalEntry
-User.hasMany(JournalEntry, { foreignKey: 'user_id' });
-JournalEntry.belongsTo(User, { foreignKey: 'user_id' });
+User.hasMany(JournalEntry, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+JournalEntry.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 
 // Quote <-> JournalEntry
 Quote.hasMany(JournalEntry, { foreignKey: 'quote_id' });

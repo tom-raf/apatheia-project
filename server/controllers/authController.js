@@ -37,6 +37,7 @@ exports.registerUser = async (req, res) => {
       message: 'Registration successful.',
       token,
       name: newUser.name,
+      id: newUser.id
     });
   } catch (error) {
     console.error('Error in registerUser:', error);
@@ -77,6 +78,7 @@ exports.loginUser = async (req, res) => {
       message: 'Login successful.',
       token,
       name: user.name,
+      id: user.id
     });
   } catch (error) {
     console.error('Error in loginUser:', error);
