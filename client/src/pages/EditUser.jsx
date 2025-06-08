@@ -9,7 +9,8 @@ function EditUser() {
 
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [status, setStatus] = useState('');
 
   const handleSave = async (e) => {
@@ -45,15 +46,33 @@ function EditUser() {
         }
       }
 
-      if (password) {
-        await fetch('http://localhost:3000/api/users/update-password', {
+      if (newPassword) {
+        if (newPassword.length < 6) {
+          setStatus('Password must be at least 6 characters long.');
+          return;
+        }
+
+        if (!currentPassword) {
+          setStatus('Please enter your current password to change it.');
+          return;
+        }
+
+        const passwordResponse = await fetch('http://localhost:3000/api/users/update-password', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ password }),
+          body: JSON.stringify({
+            currentPassword,
+            newPassword,
+          }),
         });
+
+        if (!passwordResponse.ok) {
+          const result = await passwordResponse.json();
+          throw new Error(result.message || 'Password update failed');
+        }
       }
 
       setStatus('Changes saved successfully.');
@@ -103,9 +122,15 @@ function EditUser() {
           />
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Update password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            placeholder="Current password"
+          />
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="New password"
           />
           <div className="button-row">
             <button type="submit" className="save-button">Save</button>
