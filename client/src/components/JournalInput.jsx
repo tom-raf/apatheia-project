@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './JournalInput.css';
+import '../styles/JournalInput.css';
 
 function JournalInput({ quoteId }) {
   const [input, setInput] = useState('');

@@ -1,4 +1,4 @@
-import './QuoteCard.css';
+import '../styles/QuoteCard.css';
 
 function QuoteCard({ quoteText, author }) {
   return (

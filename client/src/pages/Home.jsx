@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Home.css';
+import '../styles/Home.css';
 import Navbar from '../components/Navbar';
 import QuoteCard from '../components/QuoteCard';
 import JournalInput from '../components/JournalInput';

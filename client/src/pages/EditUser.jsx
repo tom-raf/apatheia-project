@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import './EditUser.css';
+import '../styles/EditUser.css';
 
 function EditUser() {
   const navigate = useNavigate();

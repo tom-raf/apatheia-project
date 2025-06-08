@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Archive.css';
+import '../styles/Archive.css';
 import Navbar from '../components/Navbar';
 
 function Archive() {

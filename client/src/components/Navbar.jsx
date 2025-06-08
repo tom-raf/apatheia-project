@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './Navbar.css';
+import '../styles/Navbar.css';
 
 function Navbar() {
   const name = localStorage.getItem('name');
@@ -42,10 +42,10 @@ function Navbar() {
           <span className="nav-link">Profile</span>
           {showDropdown && (
             <div className="dropdown">
-              <button onClick={handleLogout}>Log Out</button>
               <Link to="/edit">
                 <button>Edit</button>
               </Link>
+              <button onClick={handleLogout}>Log Out</button>
             </div>
           )}
         </div>
