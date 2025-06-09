@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login-Register.css';
+import Modal from '../components/Modal';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -84,20 +85,11 @@ function Register() {
       </form>
 
       {showSuccessModal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Registration Successful</h2>
-            <p>Your account has been created.</p>
-            <div className="modal-buttons">
-              <button
-                className="confirm-button"
-                onClick={() => navigate('/home')}
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        </div>
+        <Modal
+          message="Registration successful."
+          confirmText="Continue"
+          onConfirm={() => navigate('/home')}
+        />
       )}
     </div>
   );

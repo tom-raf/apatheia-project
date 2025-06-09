@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../styles/EditUser.css';
+import Modal from '../components/Modal';
 
 function EditUser() {
   const navigate = useNavigate();
@@ -150,15 +151,13 @@ function EditUser() {
       </div>
 
       {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <p>Are you sure you want to delete your account? This cannot be undone.</p>
-            <div className="modal-buttons">
-              <button onClick={handleDelete} className="save-button">Yes</button>
-              <button onClick={() => setShowModal(false)} className="delete-account-button">No</button>
-            </div>
-          </div>
-        </div>
+        <Modal
+          message="Are you sure you want to delete your account? This cannot be undone."
+          confirmText="Yes"
+          cancelText="No"
+          onConfirm={handleDelete}
+          onCancel={() => setShowModal(false)}
+        />
       )}
     </>
   );

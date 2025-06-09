@@ -49,3 +49,7 @@
   color: #fff;
   font-family: "Cinzel", serif;
 }
+
+.submit-button:hover {
+  background-color: #555;
+}
