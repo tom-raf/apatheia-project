@@ -9,6 +9,9 @@ function Register() {
     password: '',
   });
 
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [error, setError] = useState('');
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -18,9 +21,10 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
 
-    if (formData.password.length < 6) { //Add more complexity depending on the sensitivity of data
-      alert('Password must be at least 6 characters long.');
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long.');
       return;
     }
 
@@ -32,18 +36,16 @@ function Register() {
       });
 
       const result = await response.json();
-      if (!response.ok)
-        throw new Error(result.message || 'Registration failed.');
+      if (!response.ok) throw new Error(result.message || 'Registration failed.');
 
-      alert(result.message);
       localStorage.setItem('token', result.token);
-      localStorage.setItem('name', result.name); // Set the name
+      localStorage.setItem('name', result.name);
       localStorage.setItem('id', result.id);
-      localStorage.setItem('firstVisit', 'true'); // Mark it as first-time login
+      localStorage.setItem('firstVisit', 'true');
 
-      navigate('/home');
+      setShowSuccessModal(true);
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
     }
   };
 
@@ -51,6 +53,9 @@ function Register() {
     <div className="page-wrapper">
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
+
+        {error && <p className="status-message">{error}</p>}
+
         <input
           type="text"
           name="name"
@@ -77,6 +82,23 @@ function Register() {
         />
         <button type="submit">Register</button>
       </form>
+
+      {showSuccessModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Registration Successful</h2>
+            <p>Your account has been created.</p>
+            <div className="modal-buttons">
+              <button
+                className="confirm-button"
+                onClick={() => navigate('/home')}
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
