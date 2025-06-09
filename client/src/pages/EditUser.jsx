@@ -12,6 +12,7 @@ function EditUser() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [status, setStatus] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -87,8 +88,6 @@ function EditUser() {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm('Are you sure you want to delete your account? This cannot be undone.')) return;
-
     try {
       const response = await fetch('http://localhost:3000/api/users', {
         method: 'DELETE',
@@ -138,11 +137,29 @@ function EditUser() {
           />
           <div className="button-row">
             <button type="submit" className="save-button">Save</button>
-            <button type="button" onClick={handleDelete} className="delete-account-button">Delete</button>
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
+              className="delete-account-button"
+            >
+              Delete
+            </button>
           </div>
         </form>
         {status && <p className="status-message">{status}</p>}
       </div>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>Are you sure you want to delete your account? This cannot be undone.</p>
+            <div className="modal-buttons">
+              <button onClick={handleDelete} className="save-button">Yes</button>
+              <button onClick={() => setShowModal(false)} className="delete-account-button">No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
