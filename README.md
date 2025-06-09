@@ -6,7 +6,7 @@ Each user receives one unique quote every 24 hours, ensuring no quote repeats wi
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend**: React (JavaScript)
 - **Backend**: Node.js, Express
@@ -37,14 +37,19 @@ Frontend
 In the server directory, create a .env file:
 
 DB_NAME=apatheia_dev
+
 DB_USER=your_db_username
+
 DB_PASSWORD=your_db_password
+
 DB_HOST=localhost
+
 JWT_SECRET=your_jwt_secret
+
 Update these values with your PostgreSQL credentials and a JWT secret.
 
 
-#### Seed the Database
+#### 🌱 Seed the Database
 To populate the app with sample data, run:
 - cd server
 - node seed.js
@@ -57,10 +62,11 @@ Password: testpassword
 
 Five quotes (three dated in the past, each with a journal entry).
 
-#### Usage
+#### ⚙️ Usage
 Start the Backend Server
 - cd server
 - nodemon index.js
+  
 Start the Frontend Client
 In a separate terminal:
 - cd client
