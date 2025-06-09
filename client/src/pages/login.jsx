@@ -1,33 +1,30 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login-Register.css';
+import { loginUser } from '../services/loginService';
 
 function Login() {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: '',
+  });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((previous) => ({ ...previous, [name]: value }));
+    setCredentials((previous) => ({ ...previous, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || 'Login failed.');
+      const result = await loginUser(credentials);
 
       localStorage.setItem('token', result.token);
-      localStorage.setItem('name', result.name); // Set the name
+      localStorage.setItem('name', result.name);
       localStorage.setItem('id', result.id);
-      localStorage.removeItem('firstVisit', 'false'); // Clear first-visit flag
+      localStorage.setItem('firstVisit', 'false');
 
       navigate('/home');
     } catch (error) {
@@ -42,7 +39,7 @@ function Login() {
         <input
           type="text"
           name="username"
-          value={formData.username}
+          value={credentials.username}
           onChange={handleChange}
           placeholder="Username"
           required
@@ -50,7 +47,7 @@ function Login() {
         <input
           type="password"
           name="password"
-          value={formData.password}
+          value={credentials.password}
           onChange={handleChange}
           placeholder="Password"
           required

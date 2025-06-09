@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../styles/EditUser.css';
 import Modal from '../components/Modal';
+import { updateName, updateUsername, updatePassword, deleteUser } from '../services/userService';
 
 function EditUser() {
   const navigate = useNavigate();
@@ -21,29 +22,14 @@ function EditUser() {
 
     try {
       if (name) {
-        await fetch('http://localhost:3000/api/users/update-name', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ name }),
-        });
+        await updateName(name, token);
         localStorage.setItem('name', name);
       }
 
       if (username) {
-        const usernameResponse = await fetch('http://localhost:3000/api/users/update-username', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ username }),
-        });
-
-        if (!usernameResponse.ok) {
-          const result = await usernameResponse.json();
+        const response = await updateUsername(username, token);
+        if (!response.ok) {
+          const result = await response.json();
           throw new Error(result.message || 'Username update failed');
         }
       }
@@ -59,20 +45,9 @@ function EditUser() {
           return;
         }
 
-        const passwordResponse = await fetch('http://localhost:3000/api/users/update-password', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            currentPassword,
-            newPassword,
-          }),
-        });
-
-        if (!passwordResponse.ok) {
-          const result = await passwordResponse.json();
+        const response = await updatePassword(currentPassword, newPassword, token);
+        if (!response.ok) {
+          const result = await response.json();
           throw new Error(result.message || 'Password update failed');
         }
       }
@@ -90,11 +65,7 @@ function EditUser() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/users', {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
+      const response = await deleteUser(token);
       if (response.ok) {
         localStorage.clear();
         navigate('/');

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login-Register.css';
+import { registerUser } from '../services/registerService';
 import Modal from '../components/Modal';
 
 function Register() {
@@ -9,10 +10,7 @@ function Register() {
     username: '',
     password: '',
   });
-
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [error, setError] = useState('');
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,22 +20,14 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      alert('Password must be at least 6 characters long.');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || 'Registration failed.');
+      const result = await registerUser(formData);
 
       localStorage.setItem('token', result.token);
       localStorage.setItem('name', result.name);
@@ -46,17 +36,19 @@ function Register() {
 
       setShowSuccessModal(true);
     } catch (error) {
-      setError(error.message);
+      alert(error.message);
     }
+  };
+
+  const handleContinue = () => {
+    setShowSuccessModal(false);
+    navigate('/home');
   };
 
   return (
     <div className="page-wrapper">
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
-
-        {error && <p className="status-message">{error}</p>}
-
         <input
           type="text"
           name="name"
@@ -88,7 +80,7 @@ function Register() {
         <Modal
           message="Registration successful."
           confirmText="Continue"
-          onConfirm={() => navigate('/home')}
+          onConfirm={handleContinue}
         />
       )}
     </div>
