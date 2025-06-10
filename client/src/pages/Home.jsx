@@ -3,22 +3,22 @@ import '../styles/Home.css';
 import Navbar from '../components/Navbar';
 import QuoteCard from '../components/QuoteCard';
 import JournalInput from '../components/JournalInput';
+import { fetchDailyQuote } from '../services/quoteService';
 
 function Home() {
   const [quote, setQuote] = useState(null);
 
   useEffect(() => {
-    const fetchQuote = async () => {
+    const getQuote = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/quote');
-        const data = await response.json();
+        const data = await fetchDailyQuote();
         setQuote(data);
       } catch (error) {
-        console.error('Error fetching quote:', error);
+        console.error('Error fetching quote in Home:', error);
       }
     };
 
-    fetchQuote();
+    getQuote();
   }, []);
 
   return (
