@@ -1,15 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
 
 function Navbar() {
-  const name = localStorage.getItem('name');
-  const isFirstVisit = localStorage.getItem('firstVisit') === 'true';
-
-  const greeting = isFirstVisit ? 'Chaire' : 'Welcome back';
-
+  const [name, setName] = useState('');
+  const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setName(localStorage.getItem('name') || '');
+    setIsFirstVisit(localStorage.getItem('firstVisit') === 'true');
+  }, []);
+
+  const greeting = isFirstVisit ? 'Chaire' : 'Welcome back';
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -42,9 +46,7 @@ function Navbar() {
           <span className="nav-link">Profile</span>
           {showDropdown && (
             <div className="dropdown">
-              <Link to="/edit">
-                <button>Edit</button>
-              </Link>
+              <Link to="/edit" className="dropdown-link">Edit</Link>
               <button onClick={handleLogout}>Log Out</button>
             </div>
           )}

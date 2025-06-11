@@ -61,3 +61,20 @@
 .dropdown button:hover {
   background-color: #f0f0f0;
 }
+
+.dropdown-link {
+  display: block;               
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;        
+  color: inherit;               
+}
+
+.dropdown-link:hover {
+  background-color: #f0f0f0;
+}
