@@ -35,3 +35,17 @@ export async function saveOrUpdateJournal({ input, existingEntry, quoteId, token
   if (!response.ok) throw new Error(result.message || 'Save failed');
   return result;
 };
+
+export async function fetchJournalHistory(token) {
+  const response = await fetch('http://localhost:3000/api/journal/history', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(err || 'Error fetching journal history.');
+  }
+  return await response.json();
+}

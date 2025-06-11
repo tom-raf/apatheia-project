@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../styles/Archive.css';
 import Navbar from '../components/Navbar';
+import { fetchJournalHistory } from '../services/journalService';
 
 function Archive() {
   const [entries, setEntries] = useState([]);
@@ -10,15 +11,7 @@ function Archive() {
     const fetchEntries = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(
-          'http://localhost:3000/api/journal/history',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await fetchJournalHistory(token);
         setEntries(data);
       } catch (error) {
         console.error('Error fetching archive:', error);
