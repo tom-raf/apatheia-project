@@ -5,14 +5,16 @@ body,
   margin: 0;
 }
 
-.page-wrapper {
+/* code below is unnecessary i think - can be removed
+
+/* .page-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   text-align: center;
-}
+} */
 
 a {
   text-decoration: none;

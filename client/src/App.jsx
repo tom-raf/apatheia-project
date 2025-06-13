@@ -11,7 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   return (
     <div className="app-overlay-wrapper">
-      <div className="global-overlay"></div>
+      <div className="global-overlay"></div> {/* provides background CSS styling. can we move to other divs? */}
       <div className="app-content">
         <Router>
           <Routes>
