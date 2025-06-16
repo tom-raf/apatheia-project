@@ -1,12 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const verifyToken = require('../middleware/verifyToken');
-const { deleteUser, updateUserName, updateUsername, updatePassword } = require('../controllers/userController');
-
-router.delete('/', verifyToken, deleteUser);
-router.put('/update-name', verifyToken, updateUserName);
-router.put('/update-username', verifyToken, updateUsername);
-router.put('/update-password', verifyToken, updatePassword);
-
-
-module.exports = router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyToken_1 = require("../middleware/verifyToken");
+const userController_1 = require("../controllers/userController");
+const router = (0, express_1.Router)();
+router.delete('/', verifyToken_1.verifyToken, userController_1.deleteUser);
+router.put('/update-name', verifyToken_1.verifyToken, userController_1.updateUserName);
+router.put('/update-username', verifyToken_1.verifyToken, userController_1.updateUsername);
+router.put('/update-password', verifyToken_1.verifyToken, userController_1.updatePassword);
+exports.default = router;

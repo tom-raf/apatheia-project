@@ -1,16 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const {
-  createJournalEntry,
-  getUserJournalHistory,
-  updateJournalEntry,
-  getTodaysEntry,
-} = require('../controllers/journalController');
-const verifyToken = require('../middleware/verifyToken');
-
-router.post('/', verifyToken, createJournalEntry);
-router.get('/history', verifyToken, getUserJournalHistory);
-router.put('/update', verifyToken, updateJournalEntry);
-router.get('/today', verifyToken, getTodaysEntry);
-
-module.exports = router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const journalController_1 = require("../controllers/journalController");
+const verifyToken_1 = require("../middleware/verifyToken");
+const router = (0, express_1.Router)();
+router.post('/', verifyToken_1.verifyToken, journalController_1.createJournalEntry);
+router.get('/history', verifyToken_1.verifyToken, journalController_1.getUserJournalHistory);
+router.put('/update', verifyToken_1.verifyToken, journalController_1.updateJournalEntry);
+router.get('/today', verifyToken_1.verifyToken, journalController_1.getTodaysEntry);
+exports.default = router;
