@@ -4,14 +4,15 @@ import Navbar from '../components/Navbar';
 import QuoteCard from '../components/QuoteCard';
 import JournalInput from '../components/JournalInput';
 import { fetchDailyQuote } from '../services/quoteService';
+import type { Quote } from '../services/quoteService';
 
 function Home() {
-  const [quote, setQuote] = useState(null);
+  const [quote, setQuote] = useState<Quote | null>(null);
 
   useEffect(() => {
     const getQuote = async () => {
       try {
-        const data = await fetchDailyQuote();
+        const data: Quote = await fetchDailyQuote();
         setQuote(data);
       } catch (error) {
         console.error('Error fetching quote in Home:', error);

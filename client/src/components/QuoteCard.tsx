@@ -1,6 +1,11 @@
 import '../styles/QuoteCard.css';
 
-function QuoteCard({ quoteText, author }) {
+type QuoteCardProps = {
+  quoteText: string,
+  author: string
+}
+
+function QuoteCard({ quoteText, author }: QuoteCardProps) {
   return (
     <div className="quote-section">
       <p className="quote-text">"{quoteText}"</p>

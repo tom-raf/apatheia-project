@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react';
-import { fetchTodayJournal, saveOrUpdateJournal } from '../services/journalService';
+import type { JournalEntry } from '../services/journalService';
+import { fetchTodayJournal, createOrUpdateJournal } from '../services/journalService';
 import '../styles/JournalInput.css';
 
-function JournalInput({ quoteId }) {
-  const [input, setInput] = useState('');
-  const [existingEntry, setExistingEntry] = useState(false);
-  const [status, setStatus] = useState('');
-  const token = localStorage.getItem('token');
+type JournalInputProps = {
+  quoteId: number
+}
+
+function JournalInput({ quoteId }: JournalInputProps) {
+  const [input, setInput] = useState<string>('');
+  const [existingEntry, setExistingEntry] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>('');
+  const token: string | null = localStorage.getItem('token');
 
   useEffect(() => {
+    
     const getTodayEntry = async () => {
       try {
-        const data = await fetchTodayJournal(token);
+        const data: JournalEntry = await fetchTodayJournal(token);
         setInput(data.journal_text);
         setExistingEntry(true);
       } catch {
@@ -22,12 +28,13 @@ function JournalInput({ quoteId }) {
     getTodayEntry();
   }, [token]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
     setStatus('');
 
     try {
-      const result = await saveOrUpdateJournal({ input, existingEntry, quoteId, token });
+      const result: {message:string} = await createOrUpdateJournal(input, existingEntry, quoteId, token);
       setStatus(result.message || 'Entry saved.');
       setExistingEntry(true);
     } catch (error) {

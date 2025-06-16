@@ -57,7 +57,7 @@ Update these values with your PostgreSQL credentials and a JWT secret.
 #### 🌱 Seed the Database
 To populate the app with sample data, run:
 - cd server
-- node seed.js
+- node seed.js // This command needs updating - node ./seeders/seedData.js
 
 This will create:
 

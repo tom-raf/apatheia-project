@@ -1,24 +1,27 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login-Register.css';
+import type { RegisterCredentials, RegisterResponse } from '../services/registerService';
 import { registerUser } from '../services/registerService';
 import Modal from '../components/Modal';
 
 function Register() {
-  const [formData, setFormData] = useState({
+
+  const [formData, setFormData] = useState<RegisterCredentials>({
     name: '',
     username: '',
     password: '',
   });
+  
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (formData.password.length < 6) {
@@ -27,7 +30,7 @@ function Register() {
     }
 
     try {
-      const result = await registerUser(formData);
+      const result: RegisterResponse = await registerUser(formData);
 
       localStorage.setItem('token', result.token);
       localStorage.setItem('name', result.name);

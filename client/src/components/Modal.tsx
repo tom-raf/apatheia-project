@@ -1,6 +1,14 @@
 import '../styles/Modal.css';
 
-function Modal({ message, confirmText, onConfirm, cancelText, onCancel }) {
+type ModalProps = {
+  message: string,
+  confirmText: string,
+  onConfirm: () => void,
+  cancelText?: string,
+  onCancel?: () => void
+}
+
+function Modal({ message, confirmText, onConfirm, cancelText, onCancel }: ModalProps) {
   return (
     <div className="modal-overlay">
       <div className="modal">

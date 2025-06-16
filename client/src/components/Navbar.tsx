@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
 
 function Navbar() {
-  const [name, setName] = useState('');
-  const [isFirstVisit, setIsFirstVisit] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [name, setName] = useState<string>('');
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
