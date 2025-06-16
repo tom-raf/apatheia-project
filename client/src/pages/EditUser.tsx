@@ -7,22 +7,26 @@ import { updateName, updateUsername, updatePassword, deleteUser } from '../servi
 
 function EditUser() {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token: string | null= localStorage.getItem('token')!;
 
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [status, setStatus] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [currentPassword, setCurrentPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);
 
-  const handleSave = async (e) => {
+  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('');
 
     try {
       if (name) {
-        await updateName(name, token);
+        const response = await updateName(name, token);
+        if (!response.ok) {
+          const result = await response.json();
+          throw new Error(result.message || 'Name update failed');
+        }
         localStorage.setItem('name', name);
       }
 

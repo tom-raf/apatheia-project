@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import '../styles/Archive.css';
 import Navbar from '../components/Navbar';
 import { fetchJournalHistory } from '../services/journalService';
+import type { JournalEntry } from '../services/journalService';
 
 function Archive() {
-  const [entries, setEntries] = useState([]);
-  const [expandedEntryId, setExpandedEntryId] = useState(null);
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [expandedEntryId, setExpandedEntryId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const data = await fetchJournalHistory(token);
+        const token: string | null= localStorage.getItem('token');
+        const data: JournalEntry[] = await fetchJournalHistory(token);
         setEntries(data);
       } catch (error) {
         console.error('Error fetching archive:', error);
@@ -21,7 +22,7 @@ function Archive() {
     fetchEntries();
   }, []);
 
-  const toggleExpand = (entryId) => {
+  const toggleExpand = (entryId: number) => {
     setExpandedEntryId(expandedEntryId === entryId ? null : entryId);
   };
 

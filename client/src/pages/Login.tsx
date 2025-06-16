@@ -1,26 +1,28 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login-Register.css';
+import type { LoginCredentials, LoginResponse } from '../services/loginService';
 import { loginUser } from '../services/loginService';
 
 function Login() {
-  const [credentials, setCredentials] = useState({
+
+  const [credentials, setCredentials] = useState<LoginCredentials>({
     username: '',
     password: '',
   });
   
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const result = await loginUser(credentials);
+      const result: LoginResponse = await loginUser(credentials);
 
       localStorage.setItem('token', result.token);
       localStorage.setItem('name', result.name);
@@ -28,8 +30,12 @@ function Login() {
       localStorage.setItem('firstVisit', 'false');
 
       navigate('/home');
-    } catch (error) {
-      alert(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred');
+      }
     }
   };
 
