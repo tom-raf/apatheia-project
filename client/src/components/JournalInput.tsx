@@ -40,7 +40,7 @@ function JournalInput({ quoteId }: JournalInputProps) {
       setExistingEntry(true);
     } catch (error) {
       console.error('Failed to save journal:', error);
-      setStatus('Failed to save entry.');
+      setStatus(existingEntry ? 'Failed to update entry.' : 'Failed to save entry.');
     }
   };
 
