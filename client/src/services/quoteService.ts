@@ -8,7 +8,6 @@ type Quote = {
 async function fetchDailyQuote(): Promise<Quote> {
   try {
     const response = await fetch('http://localhost:3000/api/quote');
-    console.log(response);
     if (!response.ok) {
       throw new Error(`Failed to fetch quote: ${response.status}`);
     }

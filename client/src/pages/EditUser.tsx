@@ -23,8 +23,9 @@ function EditUser() {
     try {
       if (name) {
         const response = await updateName(name, token);
+        console.log(response)
         if (!response.ok) {
-          const result = await response.json();
+          const result = await response.json(); /// This is where the console is pointing to for the user-editing issue
           throw new Error(result.message || 'Name update failed');
         }
         localStorage.setItem('name', name);
@@ -34,6 +35,7 @@ function EditUser() {
         const response = await updateUsername(username, token);
         if (!response.ok) {
           const result = await response.json();
+          console.log('This is problem B')
           throw new Error(result.message || 'Username update failed');
         }
       }
@@ -52,6 +54,7 @@ function EditUser() {
         const response = await updatePassword(currentPassword, newPassword, token);
         if (!response.ok) {
           const result = await response.json();
+          console.log('This is problem C')
           throw new Error(result.message || 'Password update failed');
         }
       }

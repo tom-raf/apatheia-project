@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import type { JournalEntry } from '../services/journalService';
 import { fetchTodayJournal, createOrUpdateJournal } from '../services/journalService';
