@@ -1,8 +1,11 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import bcrypt from 'bcryptjs';
 import sequelize from '../models/dbInstance';
 import User from '../models/userModel';
 import Quote from '../models/quoteModel';
 import JournalEntry from '../models/journalEntryModel';
+import '../models/associateModels';
 
 async function seed(): Promise<void> {
   try {
