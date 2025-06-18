@@ -27,7 +27,7 @@ const mockEntry = {
   }
 }
 
-describe('Journal Input', () => {
+describe('JournalInput', () => {
   // Happy Path tests
   describe('Happy path', () => {
     test('should load existing journal entry on loading', async () => {
