@@ -1,4 +1,6 @@
 import express, { Application } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 import cors from 'cors';
 import connectDB from './models/db';
 import { User, Quote, JournalEntry } from './models/associateModels';
@@ -6,9 +8,6 @@ import authRoutes from './routes/authRoutes';
 import quoteRoutes from './routes/quotesRoute';
 import journalRoutes from './routes/journalRoutes';
 import userRoutes from './routes/userRoutes';
-import dotenv from 'dotenv';
-
-dotenv.config();
 const app: Application = express();
 
 

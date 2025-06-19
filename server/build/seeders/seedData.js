@@ -12,11 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const dbInstance_1 = __importDefault(require("../models/dbInstance"));
 const userModel_1 = __importDefault(require("../models/userModel"));
 const quoteModel_1 = __importDefault(require("../models/quoteModel"));
 const journalEntryModel_1 = __importDefault(require("../models/journalEntryModel"));
+require("../models/associateModels");
 function seed() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
