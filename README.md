@@ -53,6 +53,8 @@ JWT_SECRET=your_jwt_secret
 
 Update these values with your PostgreSQL credentials and a JWT secret.
 
+You're also going to have to put a copy of this .env file in the build directory next to the compiled index.js
+
 
 #### 🌱 Seed the Database
 To populate the app with sample data, run:
