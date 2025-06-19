@@ -4,6 +4,9 @@ import Quote from '../../models/quoteModel'
 
 jest.mock('../../models/quoteModel'); // we need to mock the whole model
 
+// Explicitly mock static methods
+(Quote.findOne as jest.Mock) = jest.fn();
+
 describe('getAQuote', () => {
   /* partial is important for typescript, it turns the properties into optional ones 
   e.g. id: number becomes id?: number 
