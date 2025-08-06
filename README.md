@@ -82,3 +82,7 @@ In a separate terminal:
 - npm run dev
 The app should now be running at:
 http://localhost:5173
+
+## Troubleshooting
+
+If you're getting issues saving journal entries then your token might have expired. You'll either need to clear local storage or refresh.

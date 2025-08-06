@@ -45,7 +45,7 @@ async function fetchJournalHistory(token: string | null): Promise<JournalEntry[]
   return fetchWithToken<JournalEntry[]>(token, 'http://localhost:3000/api/journal/history');
 }
 
-async function createOrUpdateJournal(input: string, existingEntry: boolean, quoteId: number, token: string | null): Promise<{message:string}> {
+async function createOrUpdateJournal(input: string, existingEntry: boolean, quoteId: number, token: string | null): Promise<{ message: string }> {
   const endpoint = existingEntry
     ? 'http://localhost:3000/api/journal/update'
     : 'http://localhost:3000/api/journal';
@@ -70,6 +70,6 @@ async function createOrUpdateJournal(input: string, existingEntry: boolean, quot
   return result;
 };
 
-export type { JournalEntry, JournalCreate, JournalUpdate}
+export type { JournalEntry, JournalCreate, JournalUpdate }
 
-export { fetchTodayJournal, fetchJournalHistory, createOrUpdateJournal}
+export { fetchTodayJournal, fetchJournalHistory, createOrUpdateJournal }

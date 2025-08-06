@@ -11,7 +11,7 @@ function Archive() {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const token: string | null= localStorage.getItem('token');
+        const token: string | null = localStorage.getItem('token');
         const data: JournalEntry[] = await fetchJournalHistory(token);
         setEntries(data);
       } catch (error) {
@@ -37,7 +37,7 @@ function Archive() {
               onClick={() => toggleExpand(entry.id)}
               className="entry-date"
             >
-              {new Date(entry.createdAt).toLocaleDateString()}
+              {new Date(entry.date).toLocaleDateString()}
             </button>
 
             {expandedEntryId === entry.id && (
