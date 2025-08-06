@@ -20,6 +20,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 jest.mock('../../models/userModel');
 jest.mock('bcryptjs');
 jest.mock('jsonwebtoken');
+// Explicitly mock static methods
+userModel_1.default.findOne = jest.fn();
+userModel_1.default.create = jest.fn();
 describe('Auth Controller', () => {
     let req;
     let res;

@@ -58,8 +58,8 @@ You're also going to have to put a copy of this .env file in the build directory
 
 #### 🌱 Seed the Database
 To populate the app with sample data, run:
-- cd server
-- node seed.js // This command needs updating - node ./seeders/seedData.js
+- use $npm run seed (this uses the ts-node script, running off the build is not advisable)
+- this only adds quotes for the next couple of days, if you're getting failed to fetch errors then you'll probably need to reseed.
 
 This will create:
 
@@ -72,6 +72,8 @@ Five quotes (three dated in the past, each with a journal entry).
 #### ⚙️ Usage
 Start the Backend Server
 - cd server
+- npx tsc
+- cd build
 - nodemon index.js
   
 Start the Frontend Client
