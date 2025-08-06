@@ -15,7 +15,7 @@ function JournalInput({ quoteId }: JournalInputProps) {
   const token: string | null = localStorage.getItem('token');
 
   useEffect(() => {
-    
+
     const getTodayEntry = async () => {
       try {
         const data: JournalEntry = await fetchTodayJournal(token);
@@ -30,12 +30,12 @@ function JournalInput({ quoteId }: JournalInputProps) {
   }, [token]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    
+
     e.preventDefault();
     setStatus('');
 
     try {
-      const result: {message:string} = await createOrUpdateJournal(input, existingEntry, quoteId, token);
+      const result: { message: string } = await createOrUpdateJournal(input, existingEntry, quoteId, token);
       setStatus(result.message || 'Entry saved.');
       setExistingEntry(true);
     } catch (error) {

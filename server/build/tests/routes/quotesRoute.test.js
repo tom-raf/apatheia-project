@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const quotesController_1 = require("../../controllers/quotesController");
 const quoteModel_1 = __importDefault(require("../../models/quoteModel"));
 jest.mock('../../models/quoteModel'); // we need to mock the whole model
+// Explicitly mock static methods
+quoteModel_1.default.findOne = jest.fn();
 describe('getAQuote', () => {
     /* partial is important for typescript, it turns the properties into optional ones
     e.g. id: number becomes id?: number

@@ -9,6 +9,10 @@ jest.mock('../../models/userModel');
 jest.mock('bcryptjs');
 jest.mock('jsonwebtoken');
 
+// Explicitly mock static methods
+(User.findOne as jest.Mock) = jest.fn();
+(User.create as jest.Mock) = jest.fn();
+
 describe('Auth Controller', () => {
   let req: Partial<Request>;
   let res: Partial<Response>;
